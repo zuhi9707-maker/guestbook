@@ -1,4 +1,20 @@
-/* 일부러 수수하게 만든 기본 디자인입니다. Claude에게 마음껏 바꿔 달라고 해 보세요. */
+/* 분홍 포스트잇 벽 디자인 — 제목은 Jua, 본문은 Gowun Dodum (둥글고 읽기 편한 글꼴) */
+
+:root {
+  --bg: #ffe6ef;          /* 배경 분홍 */
+  --dot: #fff5f9;         /* 배경 물방울 */
+  --ink: #4a2a37;         /* 글자색 (진한 자두색) */
+  --sub: #a0647d;         /* 보조 글자색 */
+  --rose: #e8578f;        /* 강조 분홍 */
+  --rose-dark: #cc3f76;
+  --line: #f6bcd2;
+  --note-pink: #ffd3e3;
+  --note-peach: #ffe2cf;
+  --note-lilac: #ecdfff;
+  --note-cream: #fff3c4;
+  --title-font: "Jua", "Malgun Gothic", sans-serif;
+  --body-font: "Gowun Dodum", "Malgun Gothic", system-ui, sans-serif;
+}
 
 * {
   box-sizing: border-box;
@@ -6,45 +22,71 @@
 
 body {
   margin: 0;
-  background: #f5f5f5;
-  color: #333;
-  font-family: system-ui, "Malgun Gothic", sans-serif;
-  line-height: 1.5;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dot) 3px, transparent 3.5px);
+  background-size: 28px 28px;
+  color: var(--ink);
+  font-family: var(--body-font);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .wrap {
-  max-width: 640px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 24px 16px 48px;
+  padding: 32px 16px 56px;
+}
+
+/* ── 제목 ── */
+
+header {
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 h1 {
-  margin: 0 0 4px;
-  font-size: 28px;
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 6px 22px;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--line);
+  color: var(--rose);
+  font-family: var(--title-font);
+  font-size: 32px;
+  font-weight: 400;
+  transform: rotate(-2deg);
 }
 
-h2 {
-  font-size: 20px;
-  margin: 32px 0 12px;
+h1::before,
+h1::after {
+  content: "♡";
+  margin: 0 8px;
+  font-size: 0.7em;
+  color: var(--line);
 }
 
 .intro {
-  margin: 0 0 20px;
-  color: #666;
+  margin: 0;
+  color: var(--sub);
 }
+
+/* ── 글쓰기 카드 ── */
 
 .card {
   background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 16px;
+  border: 2px dashed var(--line);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 20px -10px rgba(204, 63, 118, 0.35);
 }
 
 label {
   display: block;
-  margin: 12px 0 4px;
-  font-weight: bold;
-  font-size: 14px;
+  margin: 14px 0 6px;
+  font-family: var(--title-font);
+  font-size: 15px;
+  color: var(--rose-dark);
 }
 
 label:first-child {
@@ -53,23 +95,52 @@ label:first-child {
 
 input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 11px 14px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: #fffafc;
+  color: var(--ink);
   font: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input::placeholder {
+  color: #c99aae;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 4px rgba(232, 87, 143, 0.18);
 }
 
 button {
-  margin-top: 16px;
-  width: 100%;
-  padding: 12px;
+  display: block;
+  margin: 18px auto 0;
+  padding: 12px 36px;
   border: 0;
-  border-radius: 4px;
-  background: #555;
+  border-radius: 999px;
+  background: var(--rose);
+  box-shadow: 0 4px 0 var(--rose-dark);
   color: #fff;
-  font: inherit;
-  font-weight: bold;
+  font-family: var(--title-font);
+  font-size: 18px;
   cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+}
+
+button:hover {
+  background: #f06a9d;
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--rose-dark);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
 }
 
 button:disabled {
@@ -77,38 +148,90 @@ button:disabled {
   cursor: default;
 }
 
+/* ── 모두의 한 줄 ── */
+
+h2 {
+  margin: 40px 0 16px;
+  font-family: var(--title-font);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--rose-dark);
+}
+
 #count {
-  color: #999;
-  font-weight: normal;
-  font-size: 16px;
+  color: var(--sub);
+  font-size: 18px;
 }
 
 .status {
-  color: #999;
   margin: 0;
+  color: var(--sub);
 }
 
 .entries {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 26px 18px;
 }
 
 .entries li {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 12px 16px;
-  margin-bottom: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 140px;
+  padding: 24px 16px 14px;
+  border-radius: 4px 4px 18px 4px;
+  box-shadow: 0 8px 12px -6px rgba(74, 42, 55, 0.3);
+  transition: transform 0.2s;
+}
+
+/* 쪽지 위 분홍 줄무늬 마스킹테이프 */
+.entries li::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 64px;
+  height: 20px;
+  margin-left: -32px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.75) 0 6px,
+    rgba(240, 120, 165, 0.55) 6px 12px
+  );
+  transform: rotate(-4deg);
+}
+
+.entries li:nth-child(4n + 1) { background: var(--note-pink);  transform: rotate(-2deg); }
+.entries li:nth-child(4n + 2) { background: var(--note-peach); transform: rotate(1.5deg); }
+.entries li:nth-child(4n + 3) { background: var(--note-lilac); transform: rotate(1deg); }
+.entries li:nth-child(4n + 4) { background: var(--note-cream); transform: rotate(-1deg); }
+
+.entries li:hover {
+  transform: rotate(0) scale(1.04);
 }
 
 .entries .content {
-  margin: 0 0 4px;
+  margin: 0;
   font-size: 17px;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .entries .meta {
   margin: 0;
-  color: #999;
+  color: var(--sub);
   font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }
