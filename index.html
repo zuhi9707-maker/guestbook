@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오늘의 한 줄</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>오늘의 한 줄</h1>
+      <p class="intro">오늘 수업에서 배운 것을 한 줄로 남겨 주세요.</p>
+    </header>
+
+    <form id="entry-form" class="card">
+      <label for="nickname">별명</label>
+      <input id="nickname" name="nickname" maxlength="20" required
+             placeholder="실명 대신 별명이나 번호">
+
+      <label for="content">오늘 배운 것 한 줄</label>
+      <input id="content" name="content" maxlength="100" required
+             placeholder="예: 분모를 같게 만들고 더한다">
+
+      <button type="submit">남기기</button>
+    </form>
+
+    <section>
+      <h2>모두의 한 줄 <span id="count"></span></h2>
+      <p id="status" class="status"></p>
+      <ul id="entry-list" class="entries"></ul>
+    </section>
+  </main>
+
+  <!-- 6부에서 Supabase를 연결할 때 이 자리에 Supabase 스크립트 한 줄이 추가됩니다 -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
