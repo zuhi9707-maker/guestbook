@@ -1,24 +1,24 @@
 // ─────────────────────────────────────────────
 // 저장·불러오기 (이 두 함수만 바꾸면 저장 장소가 바뀝니다)
-// 지금은 브라우저 저장소(localStorage)에 저장 → 내 브라우저에서만 보여요.
-// 6부에서 Supabase로 바꾸면 모두가 같은 글을 보게 됩니다.
+// 지금은 Supabase의 entries 테이블에 저장 → 모두가 같은 글을 봐요.
 // ─────────────────────────────────────────────
 
-const STORAGE_KEY = "guestbook-entries";
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // 글 목록을 최신순으로 돌려줍니다. 글 하나 = { nickname, content, created_at }
 async function loadEntries() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  const entries = saved ? JSON.parse(saved) : [];
-  return entries.sort((a, b) => b.created_at.localeCompare(a.created_at));
+  const { data, error } = await db
+    .from("entries")
+    .select("nickname, content, created_at")
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data;
 }
 
 // 글 하나를 저장합니다.
 async function saveEntry(nickname, content) {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  const entries = saved ? JSON.parse(saved) : [];
-  entries.push({ nickname, content, created_at: new Date().toISOString() });
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  const { error } = await db.from("entries").insert({ nickname, content });
+  if (error) throw error;
 }
 
 // ─────────────────────────────────────────────

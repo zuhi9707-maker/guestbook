@@ -3,5 +3,5 @@
 // SUPABASE_KEY: Publishable key (sb_publishable_…) 또는 anon public 키
 // ⚠️ secret / service_role 키는 절대 여기에 넣지 마세요.
 
-const SUPABASE_URL = "";
-const SUPABASE_KEY = "";
+const SUPABASE_URL = "https://xahllwdelyiccxmdppkt.supabase.co";
+const SUPABASE_KEY = "sb_publishable_bpcJEwzuogHZG0A0DjPC9w_bZ_puz_4";
